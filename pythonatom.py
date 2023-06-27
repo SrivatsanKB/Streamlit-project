@@ -11,13 +11,13 @@ no=st.number_input("Enter your age",min_value=0,max_value=120)
 a=open('hello1.txt','a')
 write=q+"\n"+w+"\n"+str(no)+"\n\n"
 a.write(write)
-df=pd.read_csv(a)
 if no>0:
     st.markdown(" Now this app is to give you the detailed analysis of the CSV file which is uploaded. We are gonna analysis and provide you the insights of the file ")
-    a=st.file_uploader("Enter your CSV file",type=('csv','xlsx'))
+    ft=st.file_uploader("Enter your CSV file",type=('csv','xlsx'))
     st.divider()
     if a is not None:
         tab1,tab2=st.tabs(["Data","Only Analysis"])
+        df=pd.read_csv(ft)
         tab1.write(df)
         report=pp.ProfileReport(df,dark_mode=True)
         tab2.write("Now let us see the detailed analysis of the CSV file")
@@ -25,6 +25,7 @@ if no>0:
         tab2.write(st_profile_report(report))
         my_report = sv.analyze(df)
         if st.button("Click me for more info"):
+            df=pd.read_csv(a)
             on_click=my_report = sv.analyze(df)
             my_report.show_html()
     else:
