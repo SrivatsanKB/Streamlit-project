@@ -24,7 +24,6 @@ if no>0:
         tab2.info("You can download the Overview in the reproduction column")
         tab2.write(st_profile_report(report))
         if st.button("Click me for more info"):
-            df=pd.read_csv(ft)
             on_click=my_report = sv.analyze(df)
             my_report.show_html()
     else:
