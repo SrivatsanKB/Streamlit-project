@@ -15,7 +15,7 @@ if no>0:
     st.markdown(" Now this app is to give you the detailed analysis of the CSV file which is uploaded. We are gonna analysis and provide you the insights of the file ")
     ft=st.file_uploader("Enter your CSV file",type=('csv','xlsx'))
     st.divider()
-    if a is not None:
+    if ft is not None:
         tab1,tab2=st.tabs(["Data","Only Analysis"])
         df=pd.read_csv(ft)
         tab1.write(df)
