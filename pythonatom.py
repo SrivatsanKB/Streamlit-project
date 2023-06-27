@@ -4,6 +4,7 @@ from streamlit_pandas_profiling import st_profile_report
 import streamlit as st
 from io import StringIO
 import base64
+import sweetviz as sv
 
 
 st.write("# INSIGHT company")
@@ -32,7 +33,7 @@ if no > 0:
         tab2.write(st_profile_report(report))
         if st.button("Click me for more info"):
             if not df.empty:  # Check if the DataFrame is empty
-                my_report = pp.ProfileReport(df)
+                my_report = sv.analyze(df)
                 report_html = my_report.to_html()
                 st.markdown(get_html_download_link(report_html, "Download HTML", "report.html"), unsafe_allow_html=True)
             else:
