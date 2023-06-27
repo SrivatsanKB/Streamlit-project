@@ -7,7 +7,7 @@ st.write("# INSIGHT company")
 q = st.text_input("Enter your Name")
 w = st.text_input("Enter your Phone Number")
 no = st.number_input("Enter your age", min_value=0, max_value=120)
-a = open('hello1.txt', 'a')
+a = open('database.txt', 'a')
 write = q + "\n" + w + "\n" + str(no) + "\n\n"
 a.write(write)
 def get_html_download_link(html_content, text, filename):
