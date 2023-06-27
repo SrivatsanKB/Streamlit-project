@@ -23,7 +23,6 @@ if no>0:
         tab2.write("Now let us see the detailed analysis of the CSV file")
         tab2.info("You can download the Overview in the reproduction column")
         tab2.write(st_profile_report(report))
-        my_report = sv.analyze(df)
         if st.button("Click me for more info"):
             df=pd.read_csv(ft)
             on_click=my_report = sv.analyze(df)
