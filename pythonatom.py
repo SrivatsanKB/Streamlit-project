@@ -13,6 +13,11 @@ no = st.number_input("Enter your age", min_value=0, max_value=120)
 a = open('hello1.txt', 'a')
 write = q + "\n" + w + "\n" + str(no) + "\n\n"
 a.write(write)
+def get_html_download_link(html_content, text, filename):
+    b64 = base64.b64encode(html_content.encode()).decode()
+    href = f'<a href="data:text/html;base64,{b64}" download="{filename}">{text}</a>'
+    return href
+
 if no > 0:
     st.markdown("Now this app is to give you a detailed analysis of the CSV file that is uploaded. We are going to analyze and provide you with the insights of the file")
     ft = st.file_uploader("Enter your CSV file", type=('csv', 'xlsx'))
@@ -27,11 +32,11 @@ if no > 0:
         tab2.write(st_profile_report(report))
         if st.button("Click me for more info"):
             if not df.empty:  # Check if the DataFrame is empty
-                buffer = StringIO()
-                my_report = sv.analyze(df)
-                my_report.show_html(filepath=buffer)
-                st.markdown(get_table_download_link(buffer.getvalue(), "Download HTML", "report.html"), unsafe_allow_html=True)
-        else:
-            st.warning("The uploaded CSV file is empty.")
-    else:
-        st.warning("Please upload the file")
+                my_report = pp.ProfileReport(df)
+                report_html = my_report.to_html()
+                st.markdown(get_html_download_link(report_html, "Download HTML", "report.html"), unsafe_allow_html=True)
+            else:
+                st.warning("The uploaded CSV file is empty.")
+                
+else:
+    st.warning("Please upload the file")
