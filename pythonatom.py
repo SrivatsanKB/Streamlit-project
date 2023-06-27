@@ -2,10 +2,6 @@ import pandas as pd
 import ydata_profiling as pp
 from streamlit_pandas_profiling import st_profile_report
 import streamlit as st
-from io import StringIO
-import base64
-import sweetviz as sv
-
 
 st.write("# INSIGHT company")
 q = st.text_input("Enter your Name")
@@ -30,14 +26,6 @@ if no > 0:
         report = pp.ProfileReport(df, dark_mode=True)
         tab2.write("Now let us see the detailed analysis of the CSV file")
         tab2.info("You can download the Overview in the reproduction column")
-        tab2.write(st_profile_report(report))
-        if st.button("Click me for more info"):
-            if not df.empty:  # Check if the DataFrame is empty
-                my_report = sv.analyze(df)
-                report_html = my_report.to_html()
-                st.markdown(get_html_download_link(report_html, "Download HTML", "report.html"), unsafe_allow_html=True)
-            else:
-                st.warning("The uploaded CSV file is empty.")
-                
+        tab2.write(st_profile_report(report))         
 else:
     st.warning("Please upload the file")
