@@ -1,5 +1,6 @@
 import pandas as pd
 import ydata_profiling as pp
+import base64  # Add this import
 from streamlit_pandas_profiling import st_profile_report
 import streamlit as st
 
@@ -29,3 +30,4 @@ if no > 0:
         tab2.write(st_profile_report(report))         
 else:
     st.warning("Please upload the file")
+
